@@ -14,11 +14,15 @@
 
 // CChildView
 
-CChildView::CChildView()
+CChildView::CChildView() //Constructor
 {
+    m_linefmx = 0.5;
+    m_linefmy = 0.5;
+    m_linetox = 0.2;
+    m_linetoy = 0.55;
 }
 
-CChildView::~CChildView()
+CChildView::~CChildView() //Destructor
 {
 }
 
