@@ -66,7 +66,7 @@ void CChildView::OnGLDraw(CDC* pDC)
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-    glColor3d(1., 0., 0.);
+    glColor3d(1., 0., 0.); // red rectangle
 
     glBegin(GL_POLYGON);        //draws a polygon, vertices in counter-clockwise order. 
     glVertex2d(0.25, 0.25);
@@ -75,11 +75,11 @@ void CChildView::OnGLDraw(CDC* pDC)
     glVertex2d(0.25, 0.75);
     glEnd();
 
+    // Draw the line
+    glColor3d(0., 1., 0.); // Change the color to green
     glBegin(GL_LINES);
-    glVertex2d(0.1, 0.1);
-    glVertex2d(0.8, 0.22);
-    glVertex2d(0.78, 0.9);
-    glVertex2d(0.2, 0.9);
+    glVertex2d(m_linefmx, m_linefmy);
+    glVertex2d(m_linetox, m_linetoy);
     glEnd();
 }
 
