@@ -18,6 +18,12 @@ public:
 // Attributes
 public:
 
+private:
+	double m_linefmx;
+	double m_linefmy;
+	double m_linetox;
+	double m_linetoy;
+
 // Operations
 public:
 
