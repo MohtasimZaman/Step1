@@ -29,6 +29,7 @@ CChildView::~CChildView() //Destructor
 
 BEGIN_MESSAGE_MAP(CChildView, COpenGLWnd)
 	ON_WM_PAINT()
+    ON_COMMAND(ID_STEPSTUFF_LINEENDTO0, &CChildView::OnStepstuffLineendto0)
 END_MESSAGE_MAP()
 
 
@@ -81,5 +82,16 @@ void CChildView::OnGLDraw(CDC* pDC)
     glVertex2d(m_linefmx, m_linefmy);
     glVertex2d(m_linetox, m_linetoy);
     glEnd();
+}
+
+
+
+void CChildView::OnStepstuffLineendto0()
+{
+    // TODO: Add your command handler code here
+    m_linetox = 0.1;
+    m_linetoy = 0.1;
+
+    Invalidate();
 }
 

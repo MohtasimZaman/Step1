@@ -6,6 +6,7 @@
 #define IDP_OLE_INIT_FAILED			100
 #define IDR_MAINFRAME				128
 #define IDR_Step1TYPE				130
+#define ID_STEPSTUFF_LINEENDTO0		32771
 
 // Next default values for new objects
 //
