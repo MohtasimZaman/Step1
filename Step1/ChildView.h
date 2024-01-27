@@ -24,6 +24,11 @@ private:
 	double m_linetox;
 	double m_linetoy;
 
+	double m_starCenterX;
+	double m_starCenterY;
+	double m_starRadius;
+	double m_starRotationAngle;
+
 // Operations
 public:
 
@@ -43,5 +48,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnStepstuffLineendto0();
+	afx_msg void OnRotateStar();
+	afx_msg void OnStar();
 };
 

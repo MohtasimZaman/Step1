@@ -26,4 +26,11 @@ public:
 	double m_fmy;
 	double m_tox;
 	double m_toy;
+
+	double m_starCenterX;
+	double m_starCenterY;
+	double m_starRadius;
+	double m_starRotationAngle;
+public:
+    afx_msg void OnRotateStar();
 };
