@@ -6,6 +6,7 @@
 #include "framework.h"
 #include "Step1.h"
 #include "ChildView.h"
+#include "CLineDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -88,10 +89,24 @@ void CChildView::OnGLDraw(CDC* pDC)
 
 void CChildView::OnStepstuffLineendto0()
 {
-    // TODO: Add your command handler code here
-    m_linetox = 0.1;
-    m_linetoy = 0.1;
+    ////TODO: Add your command handler code here
+    CLineDlg dlg;
 
-    Invalidate();
+    dlg.m_fmx = m_linefmx;
+    dlg.m_fmy = m_linefmy;
+    dlg.m_tox = m_linetox;
+    dlg.m_toy = m_linetoy;
+
+    if (dlg.DoModal() == IDOK)
+    {
+        m_linefmx = dlg.m_fmx;
+        m_linefmy = dlg.m_fmy;
+        m_linetox = dlg.m_tox;
+       m_linetoy = dlg.m_toy;
+
+       Invalidate();
+    }
+
+    
 }
 
