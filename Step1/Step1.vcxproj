@@ -185,6 +185,7 @@
   <ItemGroup>
     <ClInclude Include="ChildView.h" />
     <ClInclude Include="CLineDlg.h" />
+    <ClInclude Include="CStar.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="pch.h" />
@@ -195,6 +196,7 @@
   <ItemGroup>
     <ClCompile Include="ChildView.cpp" />
     <ClCompile Include="CLineDlg.cpp" />
+    <ClCompile Include="CStar.cpp" />
     <ClCompile Include="graphics\OpenGLWnd.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="pch.cpp">

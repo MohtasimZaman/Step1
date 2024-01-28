@@ -22,10 +22,10 @@ CLineDlg::CLineDlg(CWnd* pParent /*=nullptr*/)
 	, m_tox(0)
 	, m_toy(0)
 {
-	m_starCenterX = 0.5;
+	/*m_starCenterX = 0.5;
 	m_starCenterY = 0.5;
 	m_starRadius = 0.2;
-	m_starRotationAngle = 0.0;
+	m_starRotationAngle = 0.0;*/
 
 
 }
@@ -48,15 +48,9 @@ void CLineDlg::DoDataExchange(CDataExchange* pDX)
 
 
 BEGIN_MESSAGE_MAP(CLineDlg, CDialog)
-	ON_COMMAND(ID_STEPSTUFF_ROTATESTAR, &CLineDlg::OnRotateStar)
 END_MESSAGE_MAP()
 
 
 // ClineDlg message handlers
 
 
-void CLineDlg::OnRotateStar()
-{
-	m_starRotationAngle += 25 * acos(-1.0) / 180;
-	Invalidate();
-}

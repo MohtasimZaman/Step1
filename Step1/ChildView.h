@@ -29,6 +29,13 @@ private:
 	double m_starRadius;
 	double m_starRotationAngle;
 
+	double m_centerx;
+	double m_centery;
+	double m_edgelength;
+	double m_rotationd;
+
+
+
 // Operations
 public:
 
@@ -49,6 +56,6 @@ protected:
 public:
 	afx_msg void OnStepstuffLineendto0();
 	afx_msg void OnRotateStar();
-	afx_msg void OnStar();
+	afx_msg void OnStepstuffParameters();
 };
 

@@ -7,6 +7,7 @@
 #include "Step1.h"
 #include "ChildView.h"
 #include "CLineDlg.h"
+#include "CStar.h"
 
 
 
@@ -27,7 +28,7 @@ CChildView::CChildView() //Constructor
     m_starCenterX = 0.5;
     m_starCenterY = 0.5;
     m_starRadius = 0.2;
-    m_starRotationAngle = 0.0;
+    m_starRotationAngle = 0.0 * (180.0 / acos(-1.0));
 }
 
 CChildView::~CChildView() //Destructor
@@ -39,7 +40,7 @@ BEGIN_MESSAGE_MAP(CChildView, COpenGLWnd)
 	ON_WM_PAINT()
     ON_COMMAND(ID_STEPSTUFF_LINEENDTO0, &CChildView::OnStepstuffLineendto0)
     ON_COMMAND(ID_STEPSTUFF_ROTATESTAR, &CChildView::OnRotateStar)
-   
+    ON_COMMAND(ID_STEPSTUFF_PARAMETERS, &CChildView::OnStepstuffParameters)
 END_MESSAGE_MAP()
 
 
@@ -100,8 +101,10 @@ void CChildView::OnGLDraw(CDC* pDC)
     glColor3d(1., 0., 0.); // Change the color to red
     glBegin(GL_LINE_LOOP);
     double rectangleRadius = sqrt(2) * m_starRadius; // Radius of the rectangle
-    for (int i = 0; i < 4; ++i) {
-        double angle = m_starRotationAngle + 2 * acos(-1.0) * i / 4; // Calculate the angle for each vertex
+    for (int i = 0; i <= 3; ++i) {
+        double angle = ((3 * 2 * acos(-1.0) * i) / 4.0)
+            + (acos(-1.0) * (m_starRotationAngle + 45) / 180.0);
+        //double angle = 3 * (m_starRotationAngle * (180.0 / acos(-1.0)) + 2 * acos(-1.0) * i / 4); // Calculate the angle for each vertex
         double x = m_starCenterX + rectangleRadius * cos(angle);
         double y = m_starCenterY + rectangleRadius * sin(angle);
         glVertex2d(x, y);
@@ -113,7 +116,9 @@ void CChildView::OnGLDraw(CDC* pDC)
     glColor3d(0., 1., 0.); // Change the color to green
     glBegin(GL_LINE_LOOP);
     for (int i = 0; i <= 10; ++i) {
-        double angle = m_starRotationAngle + 2 * acos(-1.0) * i / 11; // Calculate the angle for each vertex
+        double angle = ((3 * 2 * acos(-1.0) * i) / 11.0)
+            + (acos(-1.0) * (m_starRotationAngle + 90) / 180.0);
+        //double angle = 3 * ((m_starRotationAngle * (180.0 / acos(-1.0))) + 2 * acos(-1.0) * i / 11); // Calculate the angle for each vertex
         double x = m_starCenterX + m_starRadius * cos(angle);
         double y = m_starCenterY + m_starRadius * sin(angle);
         glVertex2d(x, y);
@@ -134,10 +139,10 @@ void CChildView::OnStepstuffLineendto0()
     dlg.m_tox = m_linetox;
     dlg.m_toy = m_linetoy;
 
-    dlg.m_starCenterX = m_starCenterX;
+   /* dlg.m_starCenterX = m_starCenterX;
     dlg.m_starCenterY = m_starCenterY;
     dlg.m_starRadius = m_starRadius;
-    dlg.m_starRotationAngle = m_starRotationAngle;
+    dlg.m_starRotationAngle = m_starRotationAngle;*/
 
     if (dlg.DoModal() == IDOK)
     {
@@ -146,20 +151,56 @@ void CChildView::OnStepstuffLineendto0()
         m_linetox = dlg.m_tox;
         m_linetoy = dlg.m_toy;
 
-        m_starCenterX = dlg.m_starCenterX;
-        m_starCenterY = dlg.m_starCenterY;
-        m_starRadius = dlg.m_starRadius;
-        m_starRotationAngle = dlg.m_starRotationAngle;
-
+        //m_starCenterX = dlg.m_starCenterX;
+        //m_starCenterY = dlg.m_starCenterY;
+        //m_starRadius = dlg.m_starRadius;
+        //m_starRotationAngle = dlg.m_starRotationAngle + 90 * (acos(-1.0) / 180.0); 
        Invalidate();
     }
 }
 
+
+
 void CChildView::OnRotateStar()
 {
-    m_starRotationAngle += 25 * acos(-1.0) / 180; // Rotate the star by 25 degrees
+    //m_starRotationAngle += 25 * (acos(-1.0) / 180.0); 
+    m_starRotationAngle += (25+90) * (180.0 / acos(-1.0));
+    // Rotate the star by 25 degrees
+    
     Invalidate();
 }
 
 
 
+
+void CChildView::OnStepstuffParameters()
+{
+    // TODO: Add your command handler code here
+    CStar dlg;
+
+    dlg.m_centerx = m_starCenterX;
+    dlg.m_centery = m_starCenterY;
+    dlg.m_edgelength = m_starRadius;
+    if (m_starRotationAngle == 0) {
+        dlg.m_rotationd = 0.0;
+    }
+    else {
+        dlg.m_rotationd = ((m_starRotationAngle) * (acos(-1.0) / 180.0) - 90);
+    }
+
+    if (dlg.DoModal() == IDOK)
+    {
+        m_starCenterX = dlg.m_centerx;
+        m_starCenterY = dlg.m_centery;
+        m_starRadius = dlg.m_edgelength;
+        if (dlg.m_rotationd == 0) {
+            m_starRotationAngle = 0.0;
+        }
+        else {
+            m_starRotationAngle = (dlg.m_rotationd + 90) * (180.0 / acos(-1.0)); 
+        }
+        Invalidate();
+    }
+
+
+}

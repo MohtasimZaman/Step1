@@ -39,6 +39,9 @@
     <ClInclude Include="CLineDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CStar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Step1.cpp">
@@ -57,6 +60,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CLineDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CStar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
